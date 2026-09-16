@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="environment.props" Condition="Exists('environment.props')" />
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net48</TargetFramework>
+        <RootNamespace>ValheimResetNow</RootNamespace>
+        <AssemblyName>ValheimResetNow</AssemblyName>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Version>1.0.0</Version>
+        <FileAlignment>512</FileAlignment>
+        <Deterministic>true</Deterministic>
+        <LangVersion>10</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <Optimize>false</Optimize>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <Optimize>true</Optimize>
+        <DebugType>pdbonly</DebugType>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JotunnLib" Version="2.30.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+        <PackageReference Include="YamlDotNet" Version="16.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Media\" />
+      <Folder Include="StarLevelAPI\" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <VALHEIM_INSTALL Condition="'$(VALHEIM_INSTALL)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
+        <BEPINEX_PATH Condition="'$(BEPINEX_PATH)' == ''">$(VALHEIM_INSTALL)\BepInEx</BEPINEX_PATH>
+        <MOD_DEPLOYPATH Condition="'$(MOD_DEPLOYPATH)' == ''">$(BEPINEX_PATH)\plugins</MOD_DEPLOYPATH>
+    </PropertyGroup>
+
+    <!-- Post-build: copy DLL to BepInEx plugins folder -->
+    <Target Name="CopyToPlugins" AfterTargets="Build">
+        <Copy Condition="Exists('$(MOD_DEPLOYPATH)')" SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(MOD_DEPLOYPATH)" OverwriteReadOnlyFiles="true" />
+        <Message Condition="Exists('$(MOD_DEPLOYPATH)')" Text="Copied $(TargetFileName) to $(MOD_DEPLOYPATH)" Importance="high" />
+    </Target>
+</Project>

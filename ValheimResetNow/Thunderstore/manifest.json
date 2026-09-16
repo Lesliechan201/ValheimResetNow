@@ -1,0 +1,7 @@
+{
+  "name": "ValheimResetNow",
+  "version_number": "0.1.0",
+  "website_url": "https://discord.gg/p9xztvJUV4",
+  "description": "Manual Resets of Vanilla Dungeons using StarLevelSystems Location ResetAPI",
+  "dependencies": [ "MidnightsFX.StarLevelSystem-1.14.0" ]
+}

@@ -1,0 +1,8 @@
+<Project>
+	<PropertyGroup>
+		<VALHEIM_INSTALL>C:\Program Files (x86)\Steam\steamapps\common\Valheim</VALHEIM_INSTALL>
+		<BEPINEX_PATH>$(VALHEIM_INSTALL)\BepInEx</BEPINEX_PATH>
+		<MOD_DEPLOYPATH>C:\Users\LC\AppData\Roaming\r2modmanPlus-local\Valheim\profiles\testa\BepInEx\plugins</MOD_DEPLOYPATH>
+		<ValheimRefsPath>C:\Users\LC\Develop\ValheimMods\ValheimRefs\2026-09-12\</ValheimRefsPath>
+	</PropertyGroup>
+</Project>
